@@ -26,7 +26,7 @@ Cookie: [...] _twitter_sess=BAhD[...]; auth_token=24fa[...]
 After you've received your twitter archive and edited a request-header file for a current session (as explained above), we can call our script:
 
 ```
-de-x.py tweets.js request-headers.txt
+de-x.py tweets.js request-headers.txt 14
 ```
 
 ## Background

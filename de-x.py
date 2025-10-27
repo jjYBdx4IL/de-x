@@ -6,10 +6,15 @@
 #
 # Please see README.md for more information
 ##
-
+#%%
 import sys
 import json
 import requests
+from datetime import datetime, timedelta, UTC
+
+format_string = "%a %b %d %H:%M:%S +0000 %Y"
+min_age_days = 14
+current_time = datetime.now(UTC)
 
 def get_tweet_ids(json_data):
 
@@ -17,7 +22,11 @@ def get_tweet_ids(json_data):
     data = json.loads(json_data)
 
     for d in data:
-        result.append(d['tweet']['id_str'])
+        dt = datetime.strptime(d['tweet']['created_at'], format_string).replace(tzinfo=UTC)
+        age = current_time - dt
+        #print("dt=%s, age=%d days" % (dt, age.days))
+        if age.days >= min_age_days:
+            result.append(d['tweet']['id_str'])
 
     return result
 
@@ -41,10 +50,13 @@ def parse_req_headers(request_file):
     return sess
 
 def main(ac, av):
+    global min_age_days
 
-    if(ac != 3):
-        print(f"[!] usage: {av[0]} <jsonfile> <req-headers>")
+    if(ac != 4):
+        print(f"[!] usage: {av[0]} <jsonfile> <req-headers> <min-age-in-days>")
         return
+
+    min_age_days = int(av[3])
 
     f = open(av[1], encoding='UTF-8')
     raw = f.read()
@@ -75,7 +87,10 @@ def delete_tweet(session, tweet_id):
 
     return
 
-
-if __name__ == '__main__':
-
+# detect VS Code or Jupyter environment - to allow running interactively:
+if sys.argv[0].endswith('\\ipykernel_launcher.py'):
+    main(4, ['de-x.py', 'tweets.json', 'auth.txt', 14])
+elif __name__ == '__main__':
     main(len(sys.argv), sys.argv)
+
+    
