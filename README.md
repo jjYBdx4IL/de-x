@@ -45,3 +45,7 @@ Twitter's `DeleteTweet` API is not restricted, and can be called without registe
 
 There is no *One Click Delete Everything* tool available and it never will. This is due to Twitter's massive restrictions on using their APIs to control your own data. Of course, they would like to keep your data. Forever. However, If you don't want your data being archived at Twitter until global heat finally also kills all machines on planet earth, you should spend some time and effort to delete them - free of charge. Maybe it is possible to build a *One Click Delete Everything* tool using this approach, and maybe it is even user-friendly. I know, the one above is not user friendly, but hopefully this readme is, and hopefully it enables your daughter/neighbor/friend to assist with deleting stuff from the Internet that you don't want to see there anymore. In my opinion, everyone should have the right and the opportunity to delete their own content from the Internet without problems, without barriers and without paying money; regardless of their origin.
 
+## Issues
+
+* might need to copy user-agent header field, too
+* might need to get header fields from non-vpn connection so the used ip is the same?

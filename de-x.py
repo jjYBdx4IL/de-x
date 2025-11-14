@@ -76,7 +76,7 @@ def main(ac, av):
 def delete_tweet(session, tweet_id):
 
     print(f"[*] delete tweet-id {tweet_id}")
-    delete_url = "https://twitter.com/i/api/graphql/VaenaVgh5q5ih7kvyVjgtg/DeleteTweet"
+    delete_url = "https://x.com/i/api/graphql/VaenaVgh5q5ih7kvyVjgtg/DeleteTweet"
     data = {"variables":{"tweet_id":tweet_id,"dark_request":False},"queryId":"VaenaVgh5q5ih7kvyVjgtg"}
 
     # set or re-set correct content-type header
